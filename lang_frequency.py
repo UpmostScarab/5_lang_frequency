@@ -1,12 +1,16 @@
-
+import re
+from collections import Counter
 
 def load_data(filepath):
-    pass
+    with open(filepath, 'r') as text_file:
+        return ' '.join(text_file.read().splitlines())
 
 
 def get_most_frequent_words(text):
-    pass
+    words = re.findall(r'\w+',text.lower())
+    return Counter(words)
 
 
 if __name__ == '__main__':
-    pass
+    text = load_data(input('Введите путь к файлу с текстом: '))
+    print(get_most_frequent_words(text).most_common(10))
